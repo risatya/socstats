@@ -1,0 +1,74 @@
+
+mas urutan prioritas revisi dan update nya:
+ 
+1. Jumlah notif di ET / PEN disesuaikan dgn tgl mulai kompetisi (misal suatu kompetisi mulai tgl 1-10-2013, pertandingan2 sblm tgl tersebut yg ada ET/PEN nya tdk perlu muncul) ---> (sipen)
+ 
+2. Summary O/U --> tambah spasi setelah nama tim (misal: arsenal (4)) ---> (adi)
+ 
+3. tambah prev next di tiap summary di bagian bawah ---> (adi)
+ 
+4. masalah tim kedobel 2 hari berturut2 di summary.  dikarenakan jadwal pertandingan yg kadang berubah, tim yg blm tanding yg muncul di summary, disesuaikan lagi tgl tandingnya mengikuti sync terbaru agar tidak kedobel (yg sudah tertulis dihapus) ---> (adi)
+ 
+5. Perubahan susunan menu utama: --->(sipen)
+   - input data
+   - list country
+   - list team
+   - list competition
+   - ET / PEN
+   - statistic --> drop down menu
+     - O/E
+     - O/U
+     - O/X
+   - summary --> drop down menu
+     - O/E
+     - O/U
+     - O/X
+   - history --> drop down menu
+     - O/E
+     - O/U
+     - O/X
+   - setting
+   --------------------------------------
+   logout  backup
+ 
+6. menu 'history' isinya rekap data dari masing2 summary ---> (adi+sipen)
+   - buat tabel: kiri nama tim, atas angka 2, 3, 4, 5, 6, 7, 8, 9, 10 or more
+   - bagian bawah ada kolom jumlah
+  
+   Country A
+ 
+          2   3   4   5   6   7   8   9  10 or more
+   ------------------------------------------------
+   tim A  2   0   3   2   1   0   0   0      0
+   tim B  1   2   2   0   1   0   0   1      0
+   tim C  4   4   0   1   0   1   0   0      0
+   ...
+   dst
+   -----------------------------------------------
+   Total  7   6   5   3   2   1   0   1     0
+ 
+   * angka yg di kolom menunjukkan brp kali suatu tim mendapat E sblm berubah O selama start kompetisi
+   * misal tim a 3 x berturut2 main dpt E kmdian pertandingan ke-4 dpt O. maka di kolom tim a angka 4 diisi 1 
+(kalo ada bbrp kali ditambahkan)
+  
+7. menu 'List Competition' isinya singkatan2 nama kompetisi (misal: PRM = premier league) dan link ke soccerway
+   data diinput lewat menu input ---> (adi)
+ 
+8. penambahan fitur masing2 summary: (sipen+adi)
+   - link ke web kompetisi (soccerway) kalau singkatan kompetisinya diklik + preview nama kompetisi kalau pointer diarahkan ke singkatan kompetisi
+   - link ke web tim (soccerway) kalau nama timnya diklik + preview vs tim apa kalau pointer diarahkan ke nama tim
+   - link ke statistic negara yg bersangkutan (mysocstats) kalau angka dalam kurung diklik
+   - tambah pilihan 5 or more
+   - subjudul INTERNATIONAL CUP isinya tim2 yg main di cup pada hari itu
+ 
+9. menu 'setting' isinya: ---> (sipen)
+   - rubah password
+   - pilihan negara2 tertentu yg ingin ditampilkan di summary - save
+   - pilihan kompetisi2 yg masuk ke INTERNATIONAL CUP (kompetisi yg dipilih diambil dari menu list competition) - save
+ 
+7. tambah kolom di list country ---> (adi)
+   - tambah kolom 'last sync' di list country yg isinya tanggal last sync masing2 negara
+   - tambah kolom jumlah tim tiap negara yg sudah diinput
+ 
+8. O/X statistic --> draw: X, win/lose: O ---> (sipen)
+   O/X summary --> 2 atau lebih O baru muncul

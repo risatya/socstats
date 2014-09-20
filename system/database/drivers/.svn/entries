@@ -1,0 +1,92 @@
+10
+
+dir
+44
+https://soccerscore.googlecode.com/svn/soccerscore/system/database/drivers
+https://soccerscore.googlecode.com/svn
+
+
+
+2013-07-12T17:52:53.719168Z
+3
+hafiz@students.amikom.ac.id
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+ee350e63-9e96-02d9-0549-f21851359956
+
+cubrid
+dir
+
+index.html
+file
+
+
+
+
+2013-07-14T21:46:52.587000Z
+0227cfd904e99656279202032b98d4a7
+2013-07-12T17:52:53.719168Z
+3
+hafiz@students.amikom.ac.id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+114
+
+mssql
+dir
+
+mysql
+dir
+
+mysqli
+dir
+
+oci8
+dir
+
+odbc
+dir
+
+pdo
+dir
+
+postgre
+dir
+
+sqlite
+dir
+
+sqlsrv
+dir
+
