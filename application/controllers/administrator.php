@@ -1106,7 +1106,20 @@ function historyoe($id_negara = 0) {
 //        echo '</pre>';
 //        
 }
-
+function historyoehalf($id_negara = 0) {
+    if ($id_negara == 0) {
+        $id_negara = $this->m_bola->getfirstidnegara();
+    }
+    $order_by = $this->input->get('order');
+    $data['ctrl']['page'] = 'historyoehalf';
+    $data['active'] = 'historyoehalf';
+    $data['list_team'] = $this->m_bola->list_team($order_by, $id_negara);
+    $data['list_negara'] = $this->m_bola->getnegara();
+    $data['et'] = sizeof($this->m_bola->extratime_list());
+    $data['id_negara'] = $id_negara;
+    $data['teams'] = $this->m_bola->getbuathistory($id_negara, 'id_team');
+    $this->load->view('admin/main', $data);
+}
 function historyou($id_negara = 0) {
     if ($id_negara == 0) {
         $id_negara = $this->m_bola->getfirstidnegara();
@@ -1129,6 +1142,20 @@ function historyou($id_negara = 0) {
 //        print_r($data);
 //        echo '</pre>';
 //        
+}
+function historyouhalf($id_negara = 0) {
+    if ($id_negara == 0) {
+        $id_negara = $this->m_bola->getfirstidnegara();
+    }
+    $order_by = $this->input->get('order');
+    $data['ctrl']['page'] = 'historyouhalf';
+    $data['active'] = 'historyouhalf';
+    $data['list_team'] = $this->m_bola->list_team($order_by, $id_negara);
+    $data['list_negara'] = $this->m_bola->getnegara();
+    $data['et'] = sizeof($this->m_bola->extratime_list());
+    $data['id_negara'] = $id_negara;
+    $data['teams'] = $this->m_bola->getbuathistory($id_negara, 'id_team');
+    $this->load->view('admin/main', $data);        
 }
 
 function historyox($id_negara = 0) {
@@ -1155,6 +1182,21 @@ function historyox($id_negara = 0) {
 //        
 }
 
+function historyoxhalf($id_negara = 0) {
+    if ($id_negara == 0) {
+        $id_negara = $this->m_bola->getfirstidnegara();
+    }
+    $order_by = $this->input->get('order');
+    $data['ctrl']['page'] = 'historyoxhalf';
+    $data['active'] = 'historyoxhalf';
+    $data['list_team'] = $this->m_bola->list_team($order_by, $id_negara);
+    $data['list_negara'] = $this->m_bola->getnegara();
+    $data['et'] = sizeof($this->m_bola->extratime_list());
+    $data['id_negara'] = $id_negara;
+    $data['teams'] = $this->m_bola->getbuathistory($id_negara, 'id_team');
+    $this->load->view('admin/main', $data);
+}
+
 function historyte($id_negara = 0) {
     if ($id_negara == 0) {
         $id_negara = $this->m_bola->getfirstidnegara();
@@ -1177,6 +1219,20 @@ function historyte($id_negara = 0) {
 //        print_r($data);
 //        echo '</pre>';
 //        
+}
+function historytehalf($id_negara = 0) {
+    if ($id_negara == 0) {
+        $id_negara = $this->m_bola->getfirstidnegara();
+    }
+    $order_by = $this->input->get('order');
+    $data['ctrl']['page'] = 'historytehalf';
+    $data['active'] = 'historytehalf';
+    $data['list_team'] = $this->m_bola->list_team($order_by, $id_negara);
+    $data['list_negara'] = $this->m_bola->getnegara();
+    $data['et'] = sizeof($this->m_bola->extratime_list());
+    $data['id_negara'] = $id_negara;
+    $data['teams'] = $this->m_bola->getbuathistory($id_negara, 'id_team');
+    $this->load->view('admin/main', $data); 
 }
 
 public function settingsummary() {

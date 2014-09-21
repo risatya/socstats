@@ -52,10 +52,10 @@
          <?php foreach ($team['rekap'] as $key => $rekap) { ?>
          <td><center><?php
          if ($rekap['extratime']==0) {
-            echo $rekap['result4'] ; 	
+            echo $rekap['resulthalf4'] ; 	
       } else {
           echo '<a href="'.base_url('index.php/administrator/extratimelist').'">';
-          echo $rekap['result4'] ; 
+          echo $rekap['resulthalf4'] ; 
           echo '</a>';
       }
 

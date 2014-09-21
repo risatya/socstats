@@ -72,9 +72,13 @@
                                 <div class="accordion-body collapse <?php echo ($active == '#collapseStats') ? 'active' : ''; ?> in" id="collapseHistory">
                                     <ul>
                                         <li class="<?php echo ($active == 'history') ? 'active' : 'historyoe'; ?>" style="list-style: none"><?php echo anchor('administrator/historyoe', 'History O/E', 'title="History O/E"'); ?></li>
+                                        <li class="<?php echo ($active == 'historyhalf') ? 'active' : 'historyoe'; ?>" style="list-style: none"><?php echo anchor('administrator/historyoehalf', 'History O/E Half-time', 'title="History O/E Half-time"'); ?></li>
                                         <li class="<?php echo ($active == 'hsitoryou') ? 'active' : ''; ?>" style="list-style: none"><?php echo anchor('administrator/historyou', 'History O/U', 'title="History O/U"'); ?></li>
-                                        <li class="<?php echo ($active == 'historyox') ? 'active' : ''; ?>" style="list-style: none"><?php echo anchor('administrator/historyox', 'History X/O', 'title="History X/O"'); ?></li>
+                                        <li class="<?php echo ($active == 'hsitoryouhalf') ? 'active' : ''; ?>" style="list-style: none"><?php echo anchor('administrator/historyouhalf', 'History O/U Half-time', 'title="History O/U Half-time"'); ?></li>
+                                        <li class="<?php echo ($active == 'historyoxhalf') ? 'active' : ''; ?>" style="list-style: none"><?php echo anchor('administrator/historyox', 'History X/O', 'title="History X/O"'); ?></li>
+                                        <li class="<?php echo ($active == 'historyoxhalf') ? 'active' : ''; ?>" style="list-style: none"><?php echo anchor('administrator/historyoxhalf', 'History X/O Half-time', 'title="History X/O Half-time"'); ?></li>
                                          <li class="<?php echo ($active == 'historyte') ? 'active' : ''; ?>" style="list-style: none"><?php echo anchor('administrator/historyte', 'History T/E', 'title="History T/E"'); ?></li>
+                                         <li class="<?php echo ($active == 'historytehalf') ? 'active' : ''; ?>" style="list-style: none"><?php echo anchor('administrator/historytehalf', 'History T/E Half-time', 'title="History T/E Half-time"'); ?></li>
                                     </ul>
                                 </div>
                             </li>
