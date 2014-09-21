@@ -14,7 +14,7 @@
         <link href="<?php echo base_url(); ?>assets/css/docs.css" rel="stylesheet">
        	<link href="<?php echo base_url(); ?>assets/css/datepicker.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/css/google-code-prettify/prettify.css" rel="stylesheet">
-        
+        <script src="<?php echo base_url(); ?>assets/js/jquery-2.0.3.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/jquery-1.10.1.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.js"></script>
@@ -28,12 +28,136 @@
     <body style="background-color: #f5f5f5; margin-top: -60px;"  >
         <div class="navbar navbar-inverse navbar-static-top">
             <div class="navbar-inner">
-                <center><a class="brand" href="#">MySocStats</a></center>
+                <center><a class="brand" href="<?php echo base_url(); ?>administrator">MySocStats</a></center>
             </div>
+			
         </div>
         </br>
         <!--</header>-->
-        <div class="container-fluid" >
+		<div class="span12">
+                    <div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+      <div class="container-fluid">
+        <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a href="<?php echo base_url(); ?>administrator" class="brand">My Soccer Stats</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+			<li class="<?php echo ($active == 'input') ? 'active' : ''; ?>"><?php echo anchor('administrator/inputnegara', 'Input Data', 'title="Input"'); ?></li>
+			<li class="<?php echo ($active == 'listcountry') ? 'active' : ''; ?>"><?php echo anchor('administrator/listcountry', 'List Country', 'title="List Country"'); ?></li>
+			<li class="<?php echo ($active == 'listteam') ? 'active' : ''; ?>"><?php echo anchor('administrator/list_team?order=team', 'List Team', 'title="List Team"'); ?></li>
+			<li class="<?php echo ($active == 'listcompetition') ? 'active' : ''; ?>"><?php echo anchor('administrator/listcompetition', 'List Competition', 'title="List Competition"'); ?></li>
+			<li class="<?php echo ($active == 'xtp') ? 'active' : ''; ?>"><?php echo anchor('administrator/extratimelist', 'ET / PEN <span class="badge badge-info">' . $et . '</span>', 'title="ET / PEN"'); ?></li>
+            <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Statistic <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <?php echo anchor('administrator/rekap?order=team', 'Statistic Odd/Even', 'title="Statistic O/E"'); ?>
+                  <ul class="dropdown-menu">
+                    <li><?php echo anchor('administrator/rekaphalf?order=team', 'Half Time', 'title="Statistic O/E"'); ?></li>
+                    <li><?php echo anchor('administrator/rekap?order=team', 'Full Time', 'title="Statistic O/E"'); ?></li>
+                  </ul>
+                </li>
+				<li class="dropdown-submenu">
+                  <?php echo anchor('administrator/rekapou?order=team', 'Statistic Over/Under', 'title="Statistic O/U"'); ?>
+                  <ul class="dropdown-menu">
+                    <li><?php echo anchor('administrator/rekapouhalf?order=team', 'Half Time', 'title="Statistic O/U"'); ?></li>
+                    <li><?php echo anchor('administrator/rekapou?order=team', 'Full Time', 'title="Statistic O/U"'); ?></li>
+                  </ul>
+                </li>
+				<li class="dropdown-submenu">
+                  <?php echo anchor('administrator/rekapox?order=team', 'Statistic Draw/Outcome', 'title="Statistic X/O"'); ?>
+                  <ul class="dropdown-menu">
+                    <li><?php echo anchor('administrator/rekapoxhalf?order=team', 'Half Time', 'title="Statistic X/O"'); ?></li>
+                    <li><?php echo anchor('administrator/rekapox?order=team', 'Full Time', 'title="Statistic X/O"'); ?></li>
+                  </ul>
+                </li>
+				<li class="dropdown-submenu">
+                  <?php echo anchor('administrator/rekapte?order=team', 'Statistic Two-Three/Else', 'title="Statistic T/E"'); ?>
+                  <ul class="dropdown-menu">
+                    <li><?php echo anchor('administrator/rekaptehalf?order=team', 'Half Time', 'title="Statistic T/E"'); ?></li>
+                    <li><?php echo anchor('administrator/rekapte?order=team', 'Full Time', 'title="Statistic T/E"'); ?></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+			<li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Match History <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <?php echo anchor('administrator/summary/0', 'Summary Odd/Even', 'title="Statistic O/E"'); ?>
+                </li>
+				<li class="dropdown-submenu">
+                  <?php echo anchor('administrator/summaryou/0', 'Summary Outcome/Under', 'title="Summary O/U"'); ?>
+                </li>
+				<li class="dropdown-submenu">
+                  <?php echo anchor('administrator/summaryox/0', 'Summary Draw/Outcome', 'title="Summary X/O"'); ?>
+                </li>
+				<li class="dropdown-submenu">
+                  <?php echo anchor('administrator/summaryte/0', 'Summary Two-Three/Else', 'title="Summary T/E"'); ?>
+                </li>
+              </ul>
+            </li>
+			<li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Summary <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <?php echo anchor('administrator/historyoe', 'History Odd/Even', 'title="History O/E"'); ?>
+                  <ul class="dropdown-menu">
+                    <li><?php echo anchor('administrator/historyoehalf', 'Half Time', 'title="History O/E"'); ?></li>
+                    <li><?php echo anchor('administrator/historyoe', 'Full Time', 'title="History O/E"'); ?></li>
+                  </ul>
+                </li>
+				<li class="dropdown-submenu">
+                  <?php echo anchor('administrator/historyou', 'History Outcome/Under', 'title="History O/U"'); ?>
+                  <ul class="dropdown-menu">
+                    <li><?php echo anchor('administrator/historyouhalf', 'Half Time', 'title="History O/U"'); ?></li>
+                    <li><?php echo anchor('administrator/historyou', 'Full Time', 'title="History O/U"'); ?></li>
+                  </ul>
+                </li>
+				<li class="dropdown-submenu">
+                  <?php echo anchor('administrator/historyox', 'History Draw/Outcome', 'title="History X/O"'); ?>
+                  <ul class="dropdown-menu">
+                    <li><?php echo anchor('administrator/historyoxhalf', 'Half Time', 'title="History X/O"'); ?></li>
+                    <li><?php echo anchor('administrator/historyox', 'Full Time', 'title="History X/O"'); ?></li>
+                  </ul>
+                </li>
+				<li class="dropdown-submenu">
+                  <?php echo anchor('administrator/historyte', 'History Two-Three/Else', 'title="History T/E"'); ?>
+                  <ul class="dropdown-menu">
+                    <li><?php echo anchor('administrator/historytehalf', 'Half Time', 'title="History T/E"'); ?></li>
+                    <li><?php echo anchor('administrator/historyte', 'Full Time', 'title="History T/E"'); ?></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+			<li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Options <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <?php echo anchor('administrator/setting', 'Setting', 'title="Setting"'); ?>
+                </li>
+				<li class="dropdown-submenu">
+                  <a href="<?php echo site_url('administrator/backup/0'); ?>">Full Back-up</a>
+                </li>
+				<li class="dropdown-submenu">
+                  <a href="<?php echo site_url('login/logout'); ?>">Log Out</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          </div><!-- /.nav-collapse -->
+      </div>
+  </div>
+</div>
+
+</ul>
+
+                </div>
+        <!--<div class="container-fluid" >
             <div class="row-fluid">
                 <div class="span3">
                     <div class="well sidebar-nav" style="background-color: white">
@@ -90,8 +214,8 @@
                             <a class="btn btn-info btn-small" href="<?php echo site_url('administrator/backup/0'); ?>"><i class="icon-inbox"></i> Backup</a>
                         </div>
                     </div><!--/.well -->
-                </div><!--/span-->
-                <div class="span9">
+                </div>
+                <div class="span12">
                     <div class="well" style="padding: 20px; background-color: white; ">
                         <?php $this->load->view('admin/' . $ctrl['page']); ?>
                     </div>

@@ -700,18 +700,20 @@ class Administrator extends CI_Controller {
     }
 
     public function dograb() {
-        $url='http://us.soccerway.com/teams/england/hull-city-afc/725/';
-        //$url = $this->input->get('link');
+        //$url='http://us.soccerway.com/teams/england/hull-city-afc/725/';
+        $url = $this->input->get('link');
         $id_team = $this->input->get('id_team');
         $this->m_bola->filtersummary($id_team);
         $dom = $this->domScore($url, $id_team);
 
-        //$this->insertDom($dom);
-        echo '<pre>';
+        $this->insertDom($dom);
+        /*
+		echo '<pre>';
         echo print_r($dom);
         echo '</pre>';
         exit();
-        //redirect('/administrator/list_team/', 'refresh');
+		*/
+        redirect('/administrator/list_team/', 'refresh');
     }
 
     public function grabsingle() {
@@ -720,7 +722,7 @@ class Administrator extends CI_Controller {
         $dom = $this->domScore($url, $id_team);
         //echo print_r($dom);
         //exit();
-//$this->m_dom->updatelastsync($id_negara);
+		//$this->m_dom->updatelastsync($id_negara);
         if ($this->insertDom($dom))
             echo '1';
         else
@@ -748,14 +750,10 @@ class Administrator extends CI_Controller {
                 $comp = $r->find('td[class=competition]');
                 $teama = $r->find('td[class=team-a]');
                 $teamb = $r->find('td[class=team-b]');
-                $linksss = $r->find('a[class=result-loss]');
-				/*
-				$link = "";
-				if($url = $r->find('a[class=result-loss]')){
-					$link = $url->href;
-				}
-				*/
-                foreach($r->find('a') as $a)  
+                $linksss = $r->find('a', 2);
+				
+				
+                  
 				
                 $status = 1;
                 if (!empty($score)) {
@@ -780,11 +778,23 @@ class Administrator extends CI_Controller {
                 $match[$i]['id_competition'] = trim($comp[0]->plaintext);
                 $match[$i]['score1'] = preg_replace("/[^0-9]/", "", trim($score1));
                 $match[$i]['score2'] = preg_replace("/[^0-9]/", "", trim($score2));
-				//$match[$i]['href'] = $link;
+				$urlhalf = $match[$i]['linkhalf'] = 'http://int.soccerway.com' .$linksss->href;
+				$nama = array($urlhalf);
+				foreach ($nama as $val)
+				{
+				    $html = file_get_html($val);
+					$e = $html->find('div[class=container middle]', 1)->find("dl", 1)->find("dd", 0);
+					$hasilhalf = $e->plaintext;
+				}
+				$score_half = explode('-', $hasilhalf);
+                $scorehalf_1 = trim($hasilhalf[0]);
+                $scorehalf_2 = trim($hasilhalf[4]);
+                $match[$i]['scorehalf1'] = $scorehalf_1;
+                $match[$i]['scorehalf2'] = $scorehalf_2;
                 $match[$i]['team_a'] = trim($teama[0]->plaintext);
                 $match[$i]['team_b'] = trim($teamb[0]->plaintext);
                 $match[$i]['link_competition'] = 'http://int.soccerway.com' . trim($comp[0]->find('a', 0)->href);
-                //$match[$i]['link'] = $url;
+                $match[$i]['link'] = $url;
                 $match[$i]['kepanjangan'] = trim($comp[0]->find('a', 0)->title);
                 if (strpos($score, 'E')) {
                     $match[$i]['extratime'] = 'E';
@@ -795,45 +805,20 @@ class Administrator extends CI_Controller {
                 }
 
                 $match[$i]['id_team'] = $id_team;
-               //$match[$i]['link'] = trim($linksss[0]->find('a', 0)->plaintext);
                 $match[$i]['time'] = str_replace(' ', '', str_replace('-', '', trim($time)));
                 $match[$i]['status_tanding'] = trim($status);
                 $match[$i]['result'] = $this->result($match[$i]['score1'], $match[$i]['score2'], 1);
                 $match[$i]['result2'] = $this->result($match[$i]['score1'], $match[$i]['score2'], 2);
                 $match[$i]['result3'] = $this->result($match[$i]['score1'], $match[$i]['score2'], 3);
                 $match[$i]['result4'] = $this->result($match[$i]['score1'], $match[$i]['score2'], 4);
+				$match[$i]['resulthalf'] = $this->result($match[$i]['scorehalf1'], $match[$i]['scorehalf2'], 1);
+                $match[$i]['resulthalf2'] = $this->result($match[$i]['scorehalf1'], $match[$i]['scorehalf2'], 2);
+                $match[$i]['resulthalf3'] = $this->result($match[$i]['scorehalf1'], $match[$i]['scorehalf2'], 3);
+                $match[$i]['resulthalf4'] = $this->result($match[$i]['scorehalf1'], $match[$i]['scorehalf2'], 4);
                 $i++;
 				
             }
         }
-		
-		foreach($html->find('td[class=score-time score]') as $e) {  
-		foreach($r->find('a') as $a)  
-			$url = 'http://us.soccerway.com'. $a->href; 
-			echo $url;
-				$nama = array($url);
-					foreach ($nama as $val)
-					{
-						$htm = file_get_html($val);
-						foreach($htm->find('h1') as $element ){
-						echo "<li>". $element -> plaintext."</li>";
-						}
-						foreach($htm->find('dd') as $element ){
-						echo "<li>". $element -> plaintext."</li>";
-						}
-						foreach($htm->find('dd') as $element ){
-						echo "<li>". $element -> plaintext."</li>";
-						}
-					}
-		}  
-		
-		
-        //$baru=$match;
-        //echo '<pre>';
-        //echo print_r($match);
-        //echo '</pre>';
-        //exit();
-
         return $match;
     }
 
